@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="black">#FF000000</color>
+    <color name="white">#FFFFFFFF</color>
+
+    <!-- Background Gradient -->
+    <color name="gradient_start">#F8F9FD</color>
+    <color name="gradient_mid">#F8F9FD</color>
+    <color name="gradient_end">#F8F9FD</color>
+
+    <!-- Card Surfaces -->
+    <color name="card_bg">#FFFFFF</color>
+    <color name="card_bg_light">#FFFFFF</color>
+    <color name="card_glass">#FFFFFF</color>
+    <color name="card_elevated">#FFFFFF</color>
+
+    <!-- Accent Colors -->
+    <color name="accent">#3F2B96</color>
+    <color name="accent_secondary">#6C5CE7</color>
+    <color name="accent_gradient_start">#6C5CE7</color>
+    <color name="accent_gradient_end">#A29BFE</color>
+
+    <!-- Semantic Colors -->
+    <color name="income_green">#2E7D32</color>
+    <color name="income_green_bright">#4CAF50</color>
+    <color name="income_green_bg">#EBF8F2</color>
+    <color name="expense_red">#C62828</color>
+    <color name="expense_red_bright">#E53935</color>
+    <color name="expense_red_bg">#FDF2F4</color>
+    <color name="savings_blue">#3F2B96</color>
+
+    <!-- Text Colors -->
+    <color name="text_primary">#1C1939</color>
+    <color name="text_secondary">#757575</color>
+    <color name="text_hint">#BDBDBD</color>
+    <color name="text_label">#757575</color>
+
+    <!-- Item Backgrounds -->
+    <color name="item_income_bg">#EBF8F2</color>
+    <color name="item_expense_bg">#FDF2F4</color>
+
+    <!-- Divider & Surface -->
+    <color name="divider">#EEEEEE</color>
+    <color name="surface_dark">#F5F6FA</color>
+    <color name="list_bg">#F8F9FD</color>
+
+    <!-- Spinner -->
+    <color name="spinner_bg">#F0F1F5</color>
+    <color name="spinner_text">#1C1939</color>
+
+    <!-- Legacy aliases -->
+    <color name="primary">#3F2B96</color>
+    <color name="primary_dark">#3F2B96</color>
+    <color name="header_bg">#3F2B96</color>
+    <color name="balance_blue">#6C5CE7</color>
+
+    <!-- Navigation Colors -->
+    <color name="nav_active">#3F2B96</color>
+    <color name="nav_inactive">#9E9E9E</color>
+</resources>

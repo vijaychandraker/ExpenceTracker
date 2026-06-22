@@ -1,0 +1,360 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical"
+    android:background="@drawable/bg_dialog_dark"
+    android:padding="24dp">
+
+    <!-- Dialog Title Row -->
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:gravity="center_vertical"
+        android:layout_marginBottom="20dp">
+
+        <View
+            android:layout_width="4dp"
+            android:layout_height="26dp"
+            android:background="#6C5CE7"
+            android:layout_marginEnd="12dp" />
+
+        <TextView
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="Add Transaction"
+            android:textColor="#1C1939"
+            android:textSize="18sp"
+            android:letterSpacing="0.01"
+            android:fontFamily="sans-serif-medium" />
+
+        <TextView
+            android:id="@+id/tvTypeEmoji"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="💸"
+            android:textSize="22sp" />
+    </LinearLayout>
+
+    <!-- === TRANSACTION TYPE TOGGLE PILLS === -->
+    <RadioGroup
+        android:id="@+id/rgType"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:orientation="horizontal"
+        android:layout_marginBottom="20dp"
+        android:background="@drawable/bg_type_toggle_container"
+        android:padding="4dp">
+
+        <RadioButton
+            android:id="@+id/rbIncome"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:text="💰 Income"
+            android:textColor="@drawable/type_toggle_text_income"
+            android:button="@null"
+            android:background="@drawable/bg_type_toggle_income"
+            android:gravity="center"
+            android:textSize="13sp"
+            android:fontFamily="sans-serif-medium"
+            android:layout_marginEnd="4dp" />
+
+        <RadioButton
+            android:id="@+id/rbExpense"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:text="💸 Expense"
+            android:textColor="@drawable/type_toggle_text_expense"
+            android:button="@null"
+            android:background="@drawable/bg_type_toggle_expense"
+            android:gravity="center"
+            android:textSize="13sp"
+            android:fontFamily="sans-serif-medium"
+            android:checked="true"
+            android:layout_marginStart="4dp"
+            android:layout_marginEnd="4dp" />
+
+        <RadioButton
+            android:id="@+id/rbTransfer"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:text="🔀 Transfer"
+            android:textColor="@drawable/type_toggle_text_transfer"
+            android:button="@null"
+            android:background="@drawable/bg_type_toggle_transfer"
+            android:gravity="center"
+            android:textSize="13sp"
+            android:fontFamily="sans-serif-medium"
+            android:layout_marginStart="4dp" />
+    </RadioGroup>
+
+    <!-- === CATEGORY FIELD === -->
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="CATEGORY"
+        android:textColor="#9B9EB8"
+        android:textSize="10sp"
+        android:letterSpacing="0.10"
+        android:fontFamily="sans-serif-medium"
+        android:layout_marginBottom="5dp"
+        android:layout_marginStart="2dp" />
+
+    <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/tilCategory"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="14dp"
+        app:hintEnabled="false"
+        app:boxStrokeColor="#E0E3ED"
+        app:boxBackgroundColor="#F5F6FA"
+        app:boxStrokeWidth="1dp"
+        app:boxStrokeWidthFocused="2dp"
+        app:boxCornerRadiusTopStart="12dp"
+        app:boxCornerRadiusTopEnd="12dp"
+        app:boxCornerRadiusBottomStart="12dp"
+        app:boxCornerRadiusBottomEnd="12dp"
+        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.ExposedDropdownMenu">
+        <AutoCompleteTextView
+            android:id="@+id/etCategory"
+            android:layout_width="match_parent"
+            android:layout_height="52dp"
+            android:textColor="#1C1939"
+            android:textColorHint="#BDBDBD"
+            android:hint="Select or type category"
+            android:textSize="14sp"
+            android:inputType="text"
+            android:completionThreshold="1"
+            android:popupBackground="#FFFFFF"
+            android:paddingStart="16dp"
+            android:paddingEnd="16dp" />
+    </com.google.android.material.textfield.TextInputLayout>
+
+    <!-- === AMOUNT FIELD === -->
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="AMOUNT (₹)"
+        android:textColor="#9B9EB8"
+        android:textSize="10sp"
+        android:letterSpacing="0.10"
+        android:fontFamily="sans-serif-medium"
+        android:layout_marginBottom="5dp"
+        android:layout_marginStart="2dp" />
+
+    <com.google.android.material.textfield.TextInputLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="14dp"
+        app:hintEnabled="false"
+        app:boxStrokeColor="#E0E3ED"
+        app:boxBackgroundColor="#F5F6FA"
+        app:boxStrokeWidth="1dp"
+        app:boxStrokeWidthFocused="2dp"
+        app:boxCornerRadiusTopStart="12dp"
+        app:boxCornerRadiusTopEnd="12dp"
+        app:boxCornerRadiusBottomStart="12dp"
+        app:boxCornerRadiusBottomEnd="12dp"
+        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox">
+        <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/etAmount"
+            android:layout_width="match_parent"
+            android:layout_height="52dp"
+            android:textColor="#1C1939"
+            android:textColorHint="#BDBDBD"
+            android:hint="0.00"
+            android:textSize="15sp"
+            android:inputType="numberDecimal"
+            android:paddingStart="16dp"
+            android:paddingEnd="16dp" />
+    </com.google.android.material.textfield.TextInputLayout>
+
+    <!-- === DESCRIPTION FIELD === -->
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="DESCRIPTION"
+        android:textColor="#9B9EB8"
+        android:textSize="10sp"
+        android:letterSpacing="0.10"
+        android:fontFamily="sans-serif-medium"
+        android:layout_marginBottom="5dp"
+        android:layout_marginStart="2dp" />
+
+    <com.google.android.material.textfield.TextInputLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="14dp"
+        app:hintEnabled="false"
+        app:boxStrokeColor="#E0E3ED"
+        app:boxBackgroundColor="#F5F6FA"
+        app:boxStrokeWidth="1dp"
+        app:boxStrokeWidthFocused="2dp"
+        app:boxCornerRadiusTopStart="12dp"
+        app:boxCornerRadiusTopEnd="12dp"
+        app:boxCornerRadiusBottomStart="12dp"
+        app:boxCornerRadiusBottomEnd="12dp"
+        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox">
+        <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/etDescription"
+            android:layout_width="match_parent"
+            android:layout_height="52dp"
+            android:textColor="#1C1939"
+            android:textColorHint="#BDBDBD"
+            android:hint="Optional note"
+            android:textSize="14sp"
+            android:inputType="text"
+            android:paddingStart="16dp"
+            android:paddingEnd="16dp" />
+    </com.google.android.material.textfield.TextInputLayout>
+
+    <!-- === WALLET + DATE ROW === -->
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+
+        <!-- Wallet -->
+        <LinearLayout
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:orientation="vertical"
+            android:layout_marginEnd="8dp">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="WALLET"
+                android:textColor="#9B9EB8"
+                android:textSize="10sp"
+                android:letterSpacing="0.10"
+                android:fontFamily="sans-serif-medium"
+                android:layout_marginBottom="5dp"
+                android:layout_marginStart="2dp" />
+
+            <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/tilWallet"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                app:hintEnabled="false"
+                app:boxStrokeColor="#E0E3ED"
+                app:boxBackgroundColor="#F5F6FA"
+                app:boxStrokeWidth="1dp"
+                app:boxStrokeWidthFocused="2dp"
+                app:boxCornerRadiusTopStart="12dp"
+                app:boxCornerRadiusTopEnd="12dp"
+                app:boxCornerRadiusBottomStart="12dp"
+                app:boxCornerRadiusBottomEnd="12dp"
+                style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.ExposedDropdownMenu">
+                <AutoCompleteTextView
+                    android:id="@+id/etWallet"
+                    android:layout_width="match_parent"
+                    android:layout_height="52dp"
+                    android:textColor="#1C1939"
+                    android:textColorHint="#BDBDBD"
+                    android:textSize="14sp"
+                    android:inputType="none"
+                    android:text="Cash"
+                    android:focusable="false"
+                    android:clickable="true"
+                    android:popupBackground="#FFFFFF"
+                    android:paddingStart="16dp"
+                    android:paddingEnd="16dp" />
+            </com.google.android.material.textfield.TextInputLayout>
+        </LinearLayout>
+
+        <!-- Date -->
+        <LinearLayout
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:orientation="vertical"
+            android:layout_marginStart="8dp">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="DATE"
+                android:textColor="#9B9EB8"
+                android:textSize="10sp"
+                android:letterSpacing="0.10"
+                android:fontFamily="sans-serif-medium"
+                android:layout_marginBottom="5dp"
+                android:layout_marginStart="2dp" />
+
+            <com.google.android.material.textfield.TextInputLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                app:hintEnabled="false"
+                app:boxStrokeColor="#E0E3ED"
+                app:boxBackgroundColor="#F5F6FA"
+                app:boxStrokeWidth="1dp"
+                app:boxStrokeWidthFocused="2dp"
+                app:boxCornerRadiusTopStart="12dp"
+                app:boxCornerRadiusTopEnd="12dp"
+                app:boxCornerRadiusBottomStart="12dp"
+                app:boxCornerRadiusBottomEnd="12dp"
+                style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox">
+                <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/etDate"
+                    android:layout_width="match_parent"
+                    android:layout_height="52dp"
+                    android:textColor="#1C1939"
+                    android:textColorHint="#BDBDBD"
+                    android:textSize="14sp"
+                    android:inputType="date"
+                    android:paddingStart="16dp"
+                    android:paddingEnd="16dp" />
+            </com.google.android.material.textfield.TextInputLayout>
+        </LinearLayout>
+    </LinearLayout>
+
+    <!-- === ACTION BUTTONS === -->
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:layout_marginTop="20dp"
+        android:gravity="end">
+
+        <!-- Cancel Button -->
+        <Button
+            android:id="@+id/btnDialogCancel"
+            android:layout_width="wrap_content"
+            android:layout_height="44dp"
+            android:text="Cancel"
+            android:textColor="#9E9E9E"
+            android:textSize="14sp"
+            android:fontFamily="sans-serif-medium"
+            android:letterSpacing="0.02"
+            android:background="@android:color/transparent"
+            android:paddingStart="20dp"
+            android:paddingEnd="20dp"
+            android:layout_marginEnd="8dp"
+            style="@style/Widget.MaterialComponents.Button.TextButton" />
+
+        <!-- Save Button -->
+        <Button
+            android:id="@+id/btnDialogSave"
+            android:layout_width="wrap_content"
+            android:layout_height="44dp"
+            android:text="Save"
+            android:textColor="#FFFFFF"
+            android:textSize="14sp"
+            android:fontFamily="sans-serif-medium"
+            android:letterSpacing="0.04"
+            android:paddingStart="28dp"
+            android:paddingEnd="28dp"
+            android:backgroundTint="#3F2B96"
+            style="@style/Widget.MaterialComponents.Button" />
+
+    </LinearLayout>
+
+</LinearLayout>

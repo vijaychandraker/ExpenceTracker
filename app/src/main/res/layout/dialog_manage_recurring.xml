@@ -1,0 +1,197 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical"
+    android:padding="20dp"
+    android:background="?attr/themeCardBg">
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Recurring Transactions"
+        android:textColor="?attr/themeTextPrimary"
+        android:textSize="18sp"
+        android:textStyle="bold" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="2dp"
+        android:text="Schedule transactions to be added automatically every month."
+        android:textColor="?attr/themeTextSecondary"
+        android:textSize="12sp" />
+
+    <!-- Create/Add Form Container -->
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        android:background="@drawable/card_income_bg"
+        android:orientation="vertical"
+        android:padding="16dp">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Create New Schedule"
+            android:textColor="?attr/themeTextPrimary"
+            android:textSize="14sp"
+            android:textStyle="bold" />
+
+        <!-- Row 1: Type & Wallet -->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="12dp"
+            android:orientation="horizontal">
+
+            <Spinner
+                android:id="@+id/spinRecType"
+                android:layout_width="0dp"
+                android:layout_height="44dp"
+                android:layout_weight="1"
+                android:layout_marginEnd="6dp"
+                android:background="@drawable/spinner_bg" />
+
+            <Spinner
+                android:id="@+id/spinRecWallet"
+                android:layout_width="0dp"
+                android:layout_height="44dp"
+                android:layout_weight="1"
+                android:layout_marginStart="6dp"
+                android:background="@drawable/spinner_bg" />
+        </LinearLayout>
+
+        <!-- Row 2: Category Autocomplete -->
+        <AutoCompleteTextView
+            android:id="@+id/etRecCategory"
+            android:layout_width="match_parent"
+            android:layout_height="44dp"
+            android:layout_marginTop="10dp"
+            android:background="@drawable/spinner_bg"
+            android:hint="Category"
+            android:paddingHorizontal="12dp"
+            android:textColor="?attr/themeTextPrimary"
+            android:textSize="14sp"
+            android:completionThreshold="1" />
+
+        <!-- Row 2.5: Frequency Spinner -->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:orientation="horizontal"
+            android:gravity="center_vertical">
+            
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Frequency:"
+                android:textColor="?attr/themeTextSecondary"
+                android:textSize="12sp"
+                android:layout_marginEnd="8dp" />
+
+            <Spinner
+                android:id="@+id/spinRecFrequency"
+                android:layout_width="match_parent"
+                android:layout_height="44dp"
+                android:background="@drawable/spinner_bg" />
+        </LinearLayout>
+
+        <!-- Row 3: Amount & Dynamic Schedule Input -->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:orientation="horizontal">
+
+            <EditText
+                android:id="@+id/etRecAmount"
+                android:layout_width="0dp"
+                android:layout_height="44dp"
+                android:layout_weight="1.1"
+                android:layout_marginEnd="6dp"
+                android:background="@drawable/spinner_bg"
+                android:hint="Amount"
+                android:inputType="numberDecimal"
+                android:paddingHorizontal="12dp"
+                android:textColor="?attr/themeTextPrimary"
+                android:textSize="14sp" />
+
+            <FrameLayout
+                android:layout_width="0dp"
+                android:layout_height="44dp"
+                android:layout_weight="0.9"
+                android:layout_marginStart="6dp">
+
+                <EditText
+                    android:id="@+id/etRecDay"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:background="@drawable/spinner_bg"
+                    android:hint="Day (1-31)"
+                    android:inputType="number"
+                    android:paddingHorizontal="12dp"
+                    android:textColor="?attr/themeTextPrimary"
+                    android:textSize="14sp" />
+
+                <Spinner
+                    android:id="@+id/spinRecDayOfWeek"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:background="@drawable/spinner_bg"
+                    android:visibility="gone" />
+            </FrameLayout>
+        </LinearLayout>
+
+        <!-- Description -->
+        <EditText
+            android:id="@+id/etRecDescription"
+            android:layout_width="match_parent"
+            android:layout_height="44dp"
+            android:layout_marginTop="10dp"
+            android:background="@drawable/spinner_bg"
+            android:hint="Description (optional)"
+            android:paddingHorizontal="12dp"
+            android:textColor="?attr/themeTextPrimary"
+            android:textSize="14sp" />
+
+        <!-- Save button -->
+        <Button
+            android:id="@+id/btnRecAdd"
+            android:layout_width="match_parent"
+            android:layout_height="44dp"
+            android:layout_marginTop="14dp"
+            android:backgroundTint="@color/primary"
+            android:text="Add Schedule"
+            android:textColor="#FFFFFF"
+            android:textStyle="bold"
+            app:cornerRadius="8dp" />
+    </LinearLayout>
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:layout_marginVertical="16dp"
+        android:background="@color/divider" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Active Schedules"
+        android:textColor="?attr/themeTextPrimary"
+        android:textSize="14sp"
+        android:textStyle="bold" />
+
+    <!-- Container for list items -->
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/rvRecurringList"
+        android:layout_width="match_parent"
+        android:layout_height="220dp"
+        android:layout_marginTop="8dp"
+        android:clipToPadding="false"
+        android:scrollbars="vertical" />
+
+</LinearLayout>

@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_marginBottom="8dp"
+    android:background="@drawable/list_bg_shape"
+    android:padding="12dp">
+
+    <!-- Schedule Info (Left) -->
+    <LinearLayout
+        android:id="@+id/llRecInfo"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentStart="true"
+        android:layout_toStartOf="@id/tvRecAmount"
+        android:orientation="vertical">
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:gravity="center_vertical">
+
+            <TextView
+                android:id="@+id/tvRecCategory"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Salary"
+                android:textColor="?attr/themeTextPrimary"
+                android:textSize="14sp"
+                android:textStyle="bold" />
+
+            <TextView
+                android:id="@+id/tvRecDayBadge"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="8dp"
+                android:background="@drawable/circle_icon_bg"
+                android:backgroundTint="@color/spinner_bg"
+                android:paddingHorizontal="6dp"
+                android:paddingVertical="2dp"
+                android:text="Day 1"
+                android:textColor="?attr/themeTextSecondary"
+                android:textSize="10sp" />
+        </LinearLayout>
+
+        <TextView
+            android:id="@+id/tvRecDetails"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="2dp"
+            android:text="Monthly paycheck • Bank"
+            android:textColor="?attr/themeTextSecondary"
+            android:textSize="11sp" />
+    </LinearLayout>
+
+    <!-- Amount and Delete (Right) -->
+    <ImageButton
+        android:id="@+id/btnDeleteRec"
+        android:layout_width="36dp"
+        android:layout_height="36dp"
+        android:layout_alignParentEnd="true"
+        android:layout_centerVertical="true"
+        android:background="?attr/selectableItemBackgroundBorderless"
+        android:src="@drawable/ic_delete"
+        android:contentDescription="Delete Schedule"
+        app:tint="@color/expense_red" />
+
+    <TextView
+        android:id="@+id/tvRecAmount"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_toStartOf="@id/btnDeleteRec"
+        android:layout_centerVertical="true"
+        android:layout_marginEnd="12dp"
+        android:text="+₹45,000"
+        android:textColor="@color/income_green"
+        android:textSize="14sp"
+        android:textStyle="bold" />
+
+</RelativeLayout>

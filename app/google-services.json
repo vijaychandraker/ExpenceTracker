@@ -1,0 +1,40 @@
+{
+  "project_info": {
+    "project_number": "1093833432343",
+    "firebase_url": "https://expencetracker-bb26d-default-rtdb.firebaseio.com",
+    "project_id": "expencetracker-bb26d",
+    "storage_bucket": "expencetracker-bb26d.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:1093833432343:android:6856b91ab34c303ed0eb52",
+        "android_client_info": {
+          "package_name": "com.hbtec.expencetracker"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "1093833432343-re8ed9jomccejf8cj9abeger4dajcsor.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDeSWF1J76FBPCH52GtyC-nYSk4ayGVhQI"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "1093833432343-6t6osn5c6a3sc6b0m2t893nn7hpm39nt.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

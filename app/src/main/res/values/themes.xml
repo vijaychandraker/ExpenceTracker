@@ -1,0 +1,155 @@
+<resources xmlns:tools="http://schemas.android.com/tools">
+    <!-- Base application theme. -->
+    <style name="Base.Theme.ExpenceTracker" parent="Theme.Material3.Light.NoActionBar">
+        <item name="colorPrimary">@color/primary</item>
+        <item name="colorPrimaryDark">@color/primary_dark</item>
+        <item name="colorAccent">@color/accent</item>
+        <item name="colorOnPrimary">#FFFFFF</item>
+        <item name="colorSecondary">@color/accent_secondary</item>
+        <item name="colorOnSecondary">#FFFFFF</item>
+        <item name="colorSurface">?attr/themeCardBg</item>
+        <item name="colorOnSurface">?attr/themeTextPrimary</item>
+        <item name="android:statusBarColor">@color/primary_dark</item>
+        <item name="android:navigationBarColor">#FFFFFF</item>
+        <item name="android:windowBackground">?attr/themeWindowBg</item>
+        
+        <!-- Default light fallback for attributes -->
+        <item name="themeGradientStart">#3F2B96</item>
+        <item name="themeGradientMid">#6C5CE7</item>
+        <item name="themeGradientEnd">#A29BFE</item>
+        <item name="themeCardBg">#FFFFFF</item>
+        <item name="themeWindowBg">#F8F9FD</item>
+        <item name="themeTextPrimary">#1C1939</item>
+        <item name="themeTextSecondary">#757575</item>
+        <item name="themeDivider">#EEEEEE</item>
+        <item name="themeBalanceCardBg">#0D6C5CE7</item>
+        <item name="themeBalanceCardStroke">#6C5CE7</item>
+    </style>
+
+    <!-- Specific Theme Styles -->
+    <style name="Theme.ExpenceTracker.RoyalViolet" parent="Base.Theme.ExpenceTracker">
+        <item name="colorPrimary">#3F2B96</item>
+        <item name="colorPrimaryDark">#3F2B96</item>
+        <item name="colorAccent">#3F2B96</item>
+        <item name="colorSecondary">#6C5CE7</item>
+        <item name="android:statusBarColor">#3F2B96</item>
+        <item name="android:navigationBarColor">#FFFFFF</item>
+        <item name="themeGradientStart">#3F2B96</item>
+        <item name="themeGradientMid">#6C5CE7</item>
+        <item name="themeGradientEnd">#A29BFE</item>
+        <item name="themeCardBg">#FFFFFF</item>
+        <item name="themeWindowBg">#F8F9FD</item>
+        <item name="themeTextPrimary">#1C1939</item>
+        <item name="themeTextSecondary">#757575</item>
+        <item name="themeDivider">#EEEEEE</item>
+        <item name="themeBalanceCardBg">#0D6C5CE7</item>
+        <item name="themeBalanceCardStroke">#6C5CE7</item>
+    </style>
+
+    <style name="Theme.ExpenceTracker.OceanBreeze" parent="Base.Theme.ExpenceTracker">
+        <item name="colorPrimary">#00b894</item>
+        <item name="colorPrimaryDark">#009473</item>
+        <item name="colorAccent">#00b894</item>
+        <item name="colorSecondary">#00cec9</item>
+        <item name="android:statusBarColor">#009473</item>
+        <item name="android:navigationBarColor">#FFFFFF</item>
+        <item name="themeGradientStart">#00b894</item>
+        <item name="themeGradientMid">#00cec9</item>
+        <item name="themeGradientEnd">#81ECEC</item>
+        <item name="themeCardBg">#FFFFFF</item>
+        <item name="themeWindowBg">#F0FAF9</item>
+        <item name="themeTextPrimary">#0F2C27</item>
+        <item name="themeTextSecondary">#6B7F7C</item>
+        <item name="themeDivider">#E3FAF7</item>
+        <item name="themeBalanceCardBg">#0D00CEC9</item>
+        <item name="themeBalanceCardStroke">#00CEC9</item>
+    </style>
+
+    <!-- Dark Mode Base for Midnight Charcoal -->
+    <style name="Base.Theme.ExpenceTracker.Dark" parent="Theme.Material3.Dark.NoActionBar">
+        <item name="colorPrimary">#A29BFE</item>
+        <item name="colorPrimaryDark">#0A0915</item>
+        <item name="colorAccent">#6C5CE7</item>
+        <item name="colorOnPrimary">#FFFFFF</item>
+        <item name="colorSecondary">#A29BFE</item>
+        <item name="colorOnSecondary">#FFFFFF</item>
+        <item name="colorSurface">?attr/themeCardBg</item>
+        <item name="colorOnSurface">?attr/themeTextPrimary</item>
+        <item name="android:statusBarColor">#0A0915</item>
+        <item name="android:navigationBarColor">#0A0915</item>
+        <item name="android:windowBackground">?attr/themeWindowBg</item>
+    </style>
+
+    <style name="Theme.ExpenceTracker.MidnightCharcoal" parent="Base.Theme.ExpenceTracker.Dark">
+        <item name="colorPrimary">#A29BFE</item>
+        <item name="colorPrimaryDark">#0A0915</item>
+        <item name="colorAccent">#6C5CE7</item>
+        <item name="colorSecondary">#A29BFE</item>
+        <item name="themeGradientStart">#0A0915</item>
+        <item name="themeGradientMid">#141124</item>
+        <item name="themeGradientEnd">#1E1B2C</item>
+        <item name="themeCardBg">#1E1B2C</item>
+        <item name="themeWindowBg">#05050C</item>
+        <item name="themeTextPrimary">#FFFFFF</item>
+        <item name="themeTextSecondary">#B0B0C0</item>
+        <item name="themeDivider">#2C293E</item>
+        <item name="themeBalanceCardBg">#15A29BFE</item>
+        <item name="themeBalanceCardStroke">#A29BFE</item>
+    </style>
+
+    <style name="Theme.ExpenceTracker.SunsetGold" parent="Base.Theme.ExpenceTracker.Dark">
+        <item name="colorPrimary">#FFD700</item>
+        <item name="colorPrimaryDark">#120E0A</item>
+        <item name="colorAccent">#FFD700</item>
+        <item name="colorSecondary">#E17055</item>
+        <item name="themeGradientStart">#120E0A</item>
+        <item name="themeGradientMid">#2B1B17</item>
+        <item name="themeGradientEnd">#3C2A21</item>
+        <item name="themeCardBg">#27211A</item>
+        <item name="themeWindowBg">#0A0806</item>
+        <item name="themeTextPrimary">#FFFFFF</item>
+        <item name="themeTextSecondary">#D7C49E</item>
+        <item name="themeDivider">#3E352F</item>
+        <item name="themeBalanceCardBg">#15E17055</item>
+        <item name="themeBalanceCardStroke">#E17055</item>
+    </style>
+
+    <style name="Theme.ExpenceTracker" parent="Theme.ExpenceTracker.RoyalViolet" />
+
+    <!-- Dark AlertDialog Theme (styled dynamically) -->
+    <style name="DarkAlertDialog" parent="ThemeOverlay.Material3.MaterialAlertDialog">
+        <item name="android:background">?attr/themeCardBg</item>
+        <item name="android:textColor">?attr/themeTextPrimary</item>
+        <item name="android:textColorPrimary">?attr/themeTextPrimary</item>
+        <item name="android:textColorSecondary">?attr/themeTextSecondary</item>
+        <item name="colorAccent">?attr/colorPrimary</item>
+        <item name="materialAlertDialogTitleTextStyle">@style/DarkDialogTitle</item>
+    </style>
+
+    <style name="DarkDialogTitle" parent="MaterialAlertDialog.Material3.Title.Text">
+        <item name="android:textColor">?attr/themeTextPrimary</item>
+        <item name="android:textSize">18sp</item>
+    </style>
+
+    <!-- Light background dialog for Add Transaction -->
+    <style name="TransactionDialog" parent="ThemeOverlay.Material3.MaterialAlertDialog">
+        <item name="android:background">@android:color/transparent</item>
+        <item name="android:windowBackground">@android:color/transparent</item>
+        <item name="materialAlertDialogTitleTextStyle">@style/DarkDialogTitle</item>
+        <item name="buttonBarPositiveButtonStyle">@style/TxDialogPositiveBtn</item>
+        <item name="buttonBarNegativeButtonStyle">@style/TxDialogNegativeBtn</item>
+    </style>
+
+    <style name="TxDialogPositiveBtn" parent="Widget.MaterialComponents.Button.TextButton.Dialog">
+        <item name="android:textColor">#3F2B96</item>
+        <item name="android:textSize">14sp</item>
+        <item name="android:fontFamily">sans-serif-medium</item>
+        <item name="android:letterSpacing">0.04</item>
+    </style>
+
+    <style name="TxDialogNegativeBtn" parent="Widget.MaterialComponents.Button.TextButton.Dialog">
+        <item name="android:textColor">#9E9E9E</item>
+        <item name="android:textSize">14sp</item>
+    </style>
+
+</resources>

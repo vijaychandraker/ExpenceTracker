@@ -1,0 +1,1790 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/main"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/bg_gradient"
+    tools:context=".MainActivity">
+
+    <!-- ====== HEADER TOOLBAR (Deep Purple) ====== -->
+    <RelativeLayout
+        android:id="@+id/rlHeader"
+        android:layout_width="match_parent"
+        android:layout_height="64dp"
+        android:layout_alignParentTop="true"
+        android:background="@color/primary"
+        android:elevation="4dp"
+        android:paddingHorizontal="20dp">
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentStart="true"
+            android:layout_centerVertical="true"
+            android:orientation="horizontal"
+            android:gravity="center_vertical">
+
+            <!-- Circular Profile Photo in CardView -->
+            <androidx.cardview.widget.CardView
+                android:id="@+id/cvToolbarProfile"
+                android:layout_width="36dp"
+                android:layout_height="36dp"
+                app:cardCornerRadius="18dp"
+                app:cardElevation="0dp"
+                app:cardPreventCornerOverlap="false"
+                android:layout_marginEnd="12dp"
+                android:backgroundTint="@android:color/transparent">
+
+                <FrameLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent">
+
+                    <ImageView
+                        android:id="@+id/ivToolbarProfilePic"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:visibility="gone"
+                        android:scaleType="centerCrop"
+                        android:contentDescription="Toolbar Profile Picture" />
+
+                    <TextView
+                        android:id="@+id/tvToolbarProfileInitials"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:background="@drawable/circle_icon_bg"
+                        android:backgroundTint="#FFFFFF"
+                        android:gravity="center"
+                        android:text="?"
+                        android:textColor="@color/primary"
+                        android:textSize="14sp"
+                        android:textStyle="bold" />
+                </FrameLayout>
+            </androidx.cardview.widget.CardView>
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="vertical">
+
+                <TextView
+                    android:id="@+id/tvToolbarTitle"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="HisabDo"
+                    android:textColor="#FFFFFF"
+                    android:textSize="18sp"
+                    android:textStyle="bold"
+                    android:letterSpacing="0.02" />
+
+                <TextView
+                    android:id="@+id/tvToolbarEmail"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="2dp"
+                    android:textColor="#E0E0E0"
+                    android:textSize="11sp"
+                    android:visibility="gone" />
+            </LinearLayout>
+        </LinearLayout>
+
+        <ImageButton
+            android:id="@+id/ibNotification"
+            android:layout_width="40dp"
+            android:layout_height="40dp"
+            android:layout_alignParentEnd="true"
+            android:layout_centerVertical="true"
+            android:background="?attr/selectableItemBackgroundBorderless"
+            android:src="@drawable/ic_bell"
+            android:contentDescription="Notifications"
+            app:tint="#FFFFFF" />
+    </RelativeLayout>
+
+    <!-- ====== FILTER ROW (Visible in Transactions and Reports tabs) ====== -->
+    <LinearLayout
+        android:id="@+id/llFilters"
+        android:layout_width="match_parent"
+        android:layout_height="68dp"
+        android:layout_below="@id/rlHeader"
+        android:background="#FFFFFF"
+        android:elevation="2dp"
+        android:orientation="horizontal"
+        android:gravity="center_vertical"
+        android:paddingHorizontal="16dp"
+        android:visibility="gone">
+
+        <!-- FY Spinner Container -->
+        <LinearLayout
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:layout_marginEnd="6dp"
+            android:orientation="vertical">
+            <Spinner
+                android:id="@+id/spinnerFY"
+                android:layout_width="match_parent"
+                android:layout_height="44dp"
+                android:background="@drawable/spinner_bg"
+                android:popupBackground="#FFFFFF" />
+        </LinearLayout>
+
+        <!-- Month Spinner Container -->
+        <LinearLayout
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:layout_marginStart="6dp"
+            android:layout_marginEnd="6dp"
+            android:orientation="vertical">
+            <Spinner
+                android:id="@+id/spinnerMonth"
+                android:layout_width="match_parent"
+                android:layout_height="44dp"
+                android:background="@drawable/spinner_bg"
+                android:popupBackground="#FFFFFF" />
+        </LinearLayout>
+
+        <!-- Excel Export Button -->
+        <ImageButton
+            android:id="@+id/btnExport"
+            android:layout_width="44dp"
+            android:layout_height="44dp"
+            android:background="@drawable/spinner_bg"
+            android:src="@drawable/ic_export"
+            android:contentDescription="Export Excel"
+            app:tint="@color/primary" />
+    </LinearLayout>
+
+    <!-- ====== BOTTOM NAVIGATION BAR ====== -->
+    <LinearLayout
+        android:id="@+id/llBottomNav"
+        android:layout_width="match_parent"
+        android:layout_height="60dp"
+        android:layout_alignParentBottom="true"
+        android:background="#FFFFFF"
+        android:elevation="0dp"
+        android:orientation="vertical">
+
+        <!-- Top Border -->
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:background="#E8EAF6" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="horizontal"
+            android:baselineAligned="false">
+
+            <!-- Home Tab -->
+            <LinearLayout
+                android:id="@+id/llTabHome"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:clickable="true"
+                android:focusable="true"
+                android:background="?attr/selectableItemBackground"
+                android:orientation="vertical"
+                android:gravity="center">
+                <ImageView
+                    android:id="@+id/ivTabHome"
+                    android:layout_width="22dp"
+                    android:layout_height="22dp"
+                    android:src="@drawable/ic_home"
+                    app:tint="@color/nav_active"
+                    android:contentDescription="Home" />
+                <TextView
+                    android:id="@+id/tvTabHome"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="2dp"
+                    android:text="Home"
+                    android:textColor="@color/nav_active"
+                    android:textSize="10sp"
+                    android:textStyle="bold" />
+            </LinearLayout>
+
+            <!-- Transactions Tab -->
+            <LinearLayout
+                android:id="@+id/llTabTransactions"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:clickable="true"
+                android:focusable="true"
+                android:background="?attr/selectableItemBackground"
+                android:orientation="vertical"
+                android:gravity="center">
+                <ImageView
+                    android:id="@+id/ivTabTransactions"
+                    android:layout_width="22dp"
+                    android:layout_height="22dp"
+                    android:src="@drawable/ic_transactions"
+                    app:tint="@color/nav_inactive"
+                    android:contentDescription="Transactions" />
+                <TextView
+                    android:id="@+id/tvTabTransactions"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="2dp"
+                    android:text="Transactions"
+                    android:textColor="@color/nav_inactive"
+                    android:textSize="10sp" />
+            </LinearLayout>
+
+            <!-- FAB Spacer Center -->
+            <View
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:clickable="false" />
+
+            <!-- Reports Tab -->
+            <LinearLayout
+                android:id="@+id/llTabReports"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:clickable="true"
+                android:focusable="true"
+                android:background="?attr/selectableItemBackground"
+                android:orientation="vertical"
+                android:gravity="center">
+                <ImageView
+                    android:id="@+id/ivTabReports"
+                    android:layout_width="22dp"
+                    android:layout_height="22dp"
+                    android:src="@drawable/ic_reports"
+                    app:tint="@color/nav_inactive"
+                    android:contentDescription="Reports" />
+                <TextView
+                    android:id="@+id/tvTabReports"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="2dp"
+                    android:text="Reports"
+                    android:textColor="@color/nav_inactive"
+                    android:textSize="10sp" />
+            </LinearLayout>
+
+            <!-- Profile Tab -->
+            <LinearLayout
+                android:id="@+id/llTabProfile"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:clickable="true"
+                android:focusable="true"
+                android:background="?attr/selectableItemBackground"
+                android:orientation="vertical"
+                android:gravity="center">
+                <ImageView
+                    android:id="@+id/ivTabProfile"
+                    android:layout_width="22dp"
+                    android:layout_height="22dp"
+                    android:src="@drawable/ic_profile"
+                    app:tint="@color/nav_inactive"
+                    android:contentDescription="Profile" />
+                <TextView
+                    android:id="@+id/tvTabProfile"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="2dp"
+                    android:text="Profile"
+                    android:textColor="@color/nav_inactive"
+                    android:textSize="10sp" />
+            </LinearLayout>
+
+        </LinearLayout>
+    </LinearLayout>
+
+    <!-- ====== CENTER FLOATING ACTION BUTTON ====== -->
+    <com.google.android.material.floatingactionbutton.FloatingActionButton
+        android:id="@+id/fabAdd"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_above="@id/llBottomNav"
+        android:layout_centerHorizontal="true"
+        android:layout_marginBottom="-28dp"
+        android:contentDescription="Add Transaction"
+        android:src="@drawable/ic_add"
+        app:backgroundTint="@color/primary"
+        app:tint="#FFFFFF"
+        android:elevation="16dp"
+        app:elevation="16dp"
+        app:fabSize="normal"
+        app:shapeAppearance="@style/ShapeAppearance.Material3.Corner.Full" />
+
+    <!-- ====== TABS MAIN FRAME CONTAINER ====== -->
+    <FrameLayout
+        android:id="@+id/flContent"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_above="@id/llBottomNav"
+        android:layout_below="@id/llFilters">
+
+        <!-- ==================== TAB 1: HOME ==================== -->
+        <ScrollView
+            android:id="@+id/layoutHome"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:fillViewport="true"
+            android:scrollbars="none"
+            android:overScrollMode="never"
+            android:visibility="visible">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:paddingBottom="24dp">
+
+                <!-- ===== Dashboard Header ===== -->
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="20dp"
+                    android:layout_marginHorizontal="20dp">
+
+                    <LinearLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_alignParentStart="true"
+                        android:layout_centerVertical="true"
+                        android:orientation="vertical">
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="Dashboard"
+                            android:textColor="?attr/themeTextPrimary"
+                            android:textSize="22sp"
+                            android:textStyle="bold" />
+
+                        <TextView
+                            android:id="@+id/tvDashboardMonth"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="2dp"
+                            android:text="June 2026"
+                            android:textColor="?attr/themeTextSecondary"
+                            android:textSize="13sp" />
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_alignParentEnd="true"
+                        android:layout_centerVertical="true"
+                        android:orientation="horizontal"
+                        android:gravity="center_vertical">
+
+                        <ImageButton
+                            android:id="@+id/ibDashboardSearch"
+                            android:layout_width="40dp"
+                            android:layout_height="40dp"
+                            android:background="?attr/selectableItemBackgroundBorderless"
+                            android:src="@drawable/ic_search"
+                            android:contentDescription="Search"
+                            app:tint="?attr/themeTextPrimary" />
+
+                        <FrameLayout
+                            android:id="@+id/flDashboardNotification"
+                            android:layout_width="40dp"
+                            android:layout_height="40dp"
+                            android:layout_marginStart="8dp">
+
+                            <ImageButton
+                                android:id="@+id/ibDashboardNotification"
+                                android:layout_width="match_parent"
+                                android:layout_height="match_parent"
+                                android:background="?attr/selectableItemBackgroundBorderless"
+                                android:src="@drawable/ic_bell"
+                                android:contentDescription="Notifications"
+                                app:tint="?attr/themeTextPrimary" />
+
+                            <View
+                                android:id="@+id/viewNotificationBadge"
+                                android:layout_width="8dp"
+                                android:layout_height="8dp"
+                                android:layout_gravity="top|end"
+                                android:layout_marginTop="8dp"
+                                android:layout_marginEnd="8dp"
+                                android:background="@drawable/circle_icon_bg"
+                                android:backgroundTint="#FF6B6B" />
+                        </FrameLayout>
+                    </LinearLayout>
+                </RelativeLayout>
+
+                <!-- ===== Budget Rings Horizontal Scroll ===== -->
+                <HorizontalScrollView
+                    android:id="@+id/hsvBudgetRings"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="18dp"
+                    android:scrollbars="none"
+                    android:clipToPadding="false"
+                    android:paddingHorizontal="20dp"
+                    android:visibility="gone">
+
+                    <LinearLayout
+                        android:id="@+id/llBudgetRings"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal" />
+                </HorizontalScrollView>
+
+                <!-- ===== Total Balance Card ===== -->
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="14dp"
+                    android:layout_marginHorizontal="20dp"
+                    android:background="@drawable/card_balance_bg"
+                    android:orientation="vertical"
+                    android:padding="20dp">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Total Balance"
+                        android:textColor="?attr/themeTextSecondary"
+                        android:textSize="12sp"
+                        android:textStyle="bold"
+                        android:letterSpacing="0.05" />
+
+                    <TextView
+                        android:id="@+id/tvBalance"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="6dp"
+                        android:text="₹0"
+                        android:textColor="?attr/themeTextPrimary"
+                        android:textSize="32sp"
+                        android:textStyle="bold" />
+                </LinearLayout>
+
+                <!-- ===== Income / Expense Neon Cards ===== -->
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="16dp"
+                    android:layout_marginHorizontal="20dp"
+                    android:orientation="horizontal"
+                    android:baselineAligned="false">
+
+                    <!-- Income Card with Neon Green Border -->
+                    <LinearLayout
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:layout_marginEnd="8dp"
+                        android:background="@drawable/card_glass_income_neon"
+                        android:orientation="horizontal"
+                        android:padding="16dp"
+                        android:gravity="center_vertical">
+
+                        <LinearLayout
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:orientation="vertical">
+
+                            <LinearLayout
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:orientation="horizontal"
+                                android:gravity="center_vertical">
+
+                                <TextView
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:text="💰"
+                                    android:textSize="14sp" />
+
+                                <TextView
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:layout_marginStart="6dp"
+                                    android:text="Income"
+                                    android:textColor="?attr/themeTextSecondary"
+                                    android:textSize="12sp"
+                                    android:textStyle="bold" />
+
+                                <TextView
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:layout_marginStart="4dp"
+                                    android:text="↑"
+                                    android:textColor="@color/income_green"
+                                    android:textSize="14sp"
+                                    android:textStyle="bold" />
+                            </LinearLayout>
+
+                            <TextView
+                                android:id="@+id/tvTotalIncome"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_marginTop="8dp"
+                                android:text="₹0"
+                                android:textColor="@color/income_green"
+                                android:textSize="18sp"
+                                android:textStyle="bold" />
+                        </LinearLayout>
+                    </LinearLayout>
+
+                    <!-- Expense Card with Neon Red Border -->
+                    <LinearLayout
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:layout_marginStart="8dp"
+                        android:background="@drawable/card_glass_expense_neon"
+                        android:orientation="horizontal"
+                        android:padding="16dp"
+                        android:gravity="center_vertical">
+
+                        <LinearLayout
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:orientation="vertical">
+
+                            <LinearLayout
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:orientation="horizontal"
+                                android:gravity="center_vertical">
+
+                                <TextView
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:text="💸"
+                                    android:textSize="14sp" />
+
+                                <TextView
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:layout_marginStart="6dp"
+                                    android:text="Expenses"
+                                    android:textColor="?attr/themeTextSecondary"
+                                    android:textSize="12sp"
+                                    android:textStyle="bold" />
+
+                                <TextView
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:layout_marginStart="4dp"
+                                    android:text="↓"
+                                    android:textColor="@color/expense_red"
+                                    android:textSize="14sp"
+                                    android:textStyle="bold" />
+                            </LinearLayout>
+
+                            <TextView
+                                android:id="@+id/tvTotalExpense"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_marginTop="8dp"
+                                android:text="₹0"
+                                android:textColor="@color/expense_red"
+                                android:textSize="18sp"
+                                android:textStyle="bold" />
+                        </LinearLayout>
+                    </LinearLayout>
+                </LinearLayout>
+
+                <!-- ===== Wallet Accounts Balances Row ===== -->
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="16dp"
+                    android:layout_marginHorizontal="20dp"
+                    android:orientation="horizontal"
+                    android:baselineAligned="false">
+
+                    <!-- Cash Card -->
+                    <LinearLayout
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:layout_marginEnd="6dp"
+                        android:background="@drawable/card_glass_budget_ring"
+                        android:orientation="vertical"
+                        android:padding="12dp"
+                        android:gravity="center">
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="💵 Cash"
+                            android:textColor="?attr/themeTextSecondary"
+                            android:textSize="11sp" />
+                        <TextView
+                            android:id="@+id/tvWalletCash"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="4dp"
+                            android:text="₹0"
+                            android:textColor="?attr/themeTextPrimary"
+                            android:textSize="14sp"
+                            android:textStyle="bold" />
+                    </LinearLayout>
+
+                    <!-- Bank Card -->
+                    <LinearLayout
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:layout_marginHorizontal="4dp"
+                        android:background="@drawable/card_glass_budget_ring"
+                        android:orientation="vertical"
+                        android:padding="12dp"
+                        android:gravity="center">
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="🏦 Bank"
+                            android:textColor="?attr/themeTextSecondary"
+                            android:textSize="11sp" />
+                        <TextView
+                            android:id="@+id/tvWalletBank"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="4dp"
+                            android:text="₹0"
+                            android:textColor="?attr/themeTextPrimary"
+                            android:textSize="14sp"
+                            android:textStyle="bold" />
+                    </LinearLayout>
+
+                    <!-- Card Card -->
+                    <LinearLayout
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:layout_marginStart="6dp"
+                        android:background="@drawable/card_glass_budget_ring"
+                        android:orientation="vertical"
+                        android:padding="12dp"
+                        android:gravity="center">
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="💳 Card"
+                            android:textColor="?attr/themeTextSecondary"
+                            android:textSize="11sp" />
+                        <TextView
+                            android:id="@+id/tvWalletCard"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="4dp"
+                            android:text="₹0"
+                            android:textColor="?attr/themeTextPrimary"
+                            android:textSize="14sp"
+                            android:textStyle="bold" />
+                    </LinearLayout>
+                </LinearLayout>
+
+                <!-- ===== Budget Card ===== -->
+                <LinearLayout
+                    android:id="@+id/cardBudget"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="16dp"
+                    android:layout_marginHorizontal="20dp"
+                    android:background="@drawable/card_glass_section"
+                    android:orientation="vertical"
+                    android:padding="16dp"
+                    android:visibility="gone">
+
+                    <RelativeLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content">
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_alignParentStart="true"
+                            android:text="Monthly Budget Limit"
+                            android:textColor="?attr/themeTextPrimary"
+                            android:textSize="12sp"
+                            android:textStyle="bold" />
+                        <TextView
+                            android:id="@+id/tvBudgetStatus"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_alignParentEnd="true"
+                            android:text="₹0 / ₹0"
+                            android:textColor="?attr/themeTextSecondary"
+                            android:textSize="11sp"
+                            android:textStyle="bold" />
+                    </RelativeLayout>
+
+                    <ProgressBar
+                        android:id="@+id/pbBudget"
+                        style="?android:attr/progressBarStyleHorizontal"
+                        android:layout_width="match_parent"
+                        android:layout_height="6dp"
+                        android:layout_marginTop="10dp"
+                        android:max="100"
+                        android:progress="0"
+                        android:progressBackgroundTint="#E0E0E0" />
+
+                    <TextView
+                        android:id="@+id/tvBudgetMessage"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="8dp"
+                        android:text="Within budget limit"
+                        android:textColor="@color/income_green"
+                        android:textSize="11sp" />
+
+                    <LinearLayout
+                        android:id="@+id/llCategoryBudgets"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="vertical" />
+                </LinearLayout>
+
+                <!-- ===== Recent Transactions Section ===== -->
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="20dp"
+                    android:layout_marginHorizontal="20dp"
+                    android:background="@drawable/card_glass_section"
+                    android:orientation="vertical"
+                    android:padding="16dp">
+
+                    <RelativeLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginBottom="8dp">
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_alignParentStart="true"
+                            android:layout_centerVertical="true"
+                            android:text="Recent Transactions"
+                            android:textColor="?attr/themeTextPrimary"
+                            android:textSize="16sp"
+                            android:textStyle="bold" />
+
+                        <TextView
+                            android:id="@+id/tvViewAll"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_alignParentEnd="true"
+                            android:layout_centerVertical="true"
+                            android:text="See All"
+                            android:textColor="@color/primary"
+                            android:textSize="13sp"
+                            android:textStyle="bold"
+                            android:clickable="true"
+                            android:focusable="true"
+                            android:background="?attr/selectableItemBackground"
+                            android:padding="4dp" />
+                    </RelativeLayout>
+
+                    <!-- Transactions Recycler for Home Screen -->
+                    <androidx.recyclerview.widget.RecyclerView
+                        android:id="@+id/recyclerViewHome"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:nestedScrollingEnabled="false" />
+                </LinearLayout>
+
+                <!-- ===== Expenses Distribution Pie Chart ===== -->
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="16dp"
+                    android:layout_marginHorizontal="20dp"
+                    android:background="@drawable/card_glass_section"
+                    android:orientation="vertical"
+                    android:padding="16dp">
+
+                    <TextView
+                        android:id="@+id/tvHomePieTitle"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Expenses Distribution"
+                        android:textColor="?attr/themeTextPrimary"
+                        android:textSize="16sp"
+                        android:textStyle="bold" />
+
+                    <com.github.mikephil.charting.charts.PieChart
+                        android:id="@+id/homePieChart"
+                        android:layout_width="match_parent"
+                        android:layout_height="220dp"
+                        android:layout_marginTop="8dp" />
+                </LinearLayout>
+
+            </LinearLayout>
+        </ScrollView>
+
+        <!-- ==================== TAB 2: TRANSACTIONS LIST ==================== -->
+        <LinearLayout
+            android:id="@+id/layoutTransactions"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical"
+            android:visibility="gone"
+            android:paddingHorizontal="12dp"
+            android:paddingTop="8dp">
+
+            <!-- Search & Sort Row -->
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="8dp"
+                android:orientation="horizontal"
+                android:gravity="center_vertical">
+                
+                <EditText
+                    android:id="@+id/etSearch"
+                    android:layout_width="0dp"
+                    android:layout_height="44dp"
+                    android:layout_weight="1"
+                    android:background="@drawable/spinner_bg"
+                    android:hint="Search transactions..."
+                    android:inputType="text"
+                    android:paddingHorizontal="12dp"
+                    android:textColor="?attr/themeTextPrimary"
+                    android:textSize="14sp"
+                    android:drawableStart="@drawable/ic_search"
+                    android:drawablePadding="8dp" />
+
+                <ImageButton
+                    android:id="@+id/ibSort"
+                    android:layout_width="44dp"
+                    android:layout_height="44dp"
+                    android:layout_marginStart="8dp"
+                    android:background="@drawable/spinner_bg"
+                    android:src="@drawable/ic_sort"
+                    android:contentDescription="Sort Transactions"
+                    app:tint="?attr/themeTextPrimary"
+                    android:padding="10dp" />
+            </LinearLayout>
+
+            <!-- Filter Chips Row -->
+            <HorizontalScrollView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:scrollbars="none"
+                android:layout_marginBottom="12dp">
+                
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal">
+                    
+                    <!-- Type Chips -->
+                    <Button
+                        android:id="@+id/btnChipAll"
+                        android:layout_width="wrap_content"
+                        android:layout_height="32dp"
+                        android:layout_marginEnd="6dp"
+                        android:backgroundTint="@color/primary"
+                        android:text="All"
+                        android:textColor="#FFFFFF"
+                        android:textSize="11sp"
+                        app:cornerRadius="16dp"
+                        android:padding="0dp"
+                        android:insetTop="0dp"
+                        android:insetBottom="0dp" />
+
+                    <Button
+                        android:id="@+id/btnChipIncome"
+                        android:layout_width="wrap_content"
+                        android:layout_height="32dp"
+                        android:layout_marginEnd="6dp"
+                        android:backgroundTint="@color/spinner_bg"
+                        android:text="Income"
+                        android:textColor="?attr/themeTextSecondary"
+                        android:textSize="11sp"
+                        app:cornerRadius="16dp"
+                        android:padding="0dp"
+                        android:insetTop="0dp"
+                        android:insetBottom="0dp" />
+
+                    <Button
+                        android:id="@+id/btnChipExpense"
+                        android:layout_width="wrap_content"
+                        android:layout_height="32dp"
+                        android:layout_marginEnd="16dp"
+                        android:backgroundTint="@color/spinner_bg"
+                        android:text="Expense"
+                        android:textColor="?attr/themeTextSecondary"
+                        android:textSize="11sp"
+                        app:cornerRadius="16dp"
+                        android:padding="0dp"
+                        android:insetTop="0dp"
+                        android:insetBottom="0dp" />
+
+                    <!-- Wallet Filters -->
+                    <Button
+                        android:id="@+id/btnChipCash"
+                        android:layout_width="wrap_content"
+                        android:layout_height="32dp"
+                        android:layout_marginEnd="6dp"
+                        android:backgroundTint="@color/spinner_bg"
+                        android:text="Cash"
+                        android:textColor="?attr/themeTextSecondary"
+                        android:textSize="11sp"
+                        app:cornerRadius="16dp"
+                        android:padding="0dp"
+                        android:insetTop="0dp"
+                        android:insetBottom="0dp" />
+
+                    <Button
+                        android:id="@+id/btnChipBank"
+                        android:layout_width="wrap_content"
+                        android:layout_height="32dp"
+                        android:layout_marginEnd="6dp"
+                        android:backgroundTint="@color/spinner_bg"
+                        android:text="Bank"
+                        android:textColor="?attr/themeTextSecondary"
+                        android:textSize="11sp"
+                        app:cornerRadius="16dp"
+                        android:padding="0dp"
+                        android:insetTop="0dp"
+                        android:insetBottom="0dp" />
+
+                    <Button
+                        android:id="@+id/btnChipCard"
+                        android:layout_width="wrap_content"
+                        android:layout_height="32dp"
+                        android:backgroundTint="@color/spinner_bg"
+                        android:text="Card"
+                        android:textColor="?attr/themeTextSecondary"
+                        android:textSize="11sp"
+                        app:cornerRadius="16dp"
+                        android:padding="0dp"
+                        android:insetTop="0dp"
+                        android:insetBottom="0dp" />
+                </LinearLayout>
+            </HorizontalScrollView>
+
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/recyclerView"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:paddingBottom="20dp"
+                android:clipToPadding="false" />
+        </LinearLayout>
+
+        <!-- ==================== TAB 3: REPORTS (CHARTS) ==================== -->
+        <ScrollView
+            android:id="@+id/layoutReports"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:fillViewport="true"
+            android:scrollbars="none"
+            android:visibility="gone">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:padding="20dp"
+                android:paddingBottom="40dp">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Expense Breakdown"
+                    android:textColor="?attr/themeTextPrimary"
+                    android:textSize="16sp"
+                    android:textStyle="bold" />
+
+                <com.github.mikephil.charting.charts.PieChart
+                    android:id="@+id/pieChart"
+                    android:layout_width="match_parent"
+                    android:layout_height="260dp"
+                    android:layout_marginTop="12dp" />
+
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="1dp"
+                    android:layout_marginVertical="24dp"
+                    android:background="@color/divider" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Income vs. Expense Trend"
+                    android:textColor="?attr/themeTextPrimary"
+                    android:textSize="16sp"
+                    android:textStyle="bold" />
+
+                <com.github.mikephil.charting.charts.BarChart
+                    android:id="@+id/barChart"
+                    android:layout_width="match_parent"
+                    android:layout_height="260dp"
+                    android:layout_marginTop="12dp" />
+
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="1dp"
+                    android:layout_marginVertical="24dp"
+                    android:background="@color/divider" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Savings Rate Trend"
+                    android:textColor="?attr/themeTextPrimary"
+                    android:textSize="16sp"
+                    android:textStyle="bold" />
+
+                <com.github.mikephil.charting.charts.LineChart
+                    android:id="@+id/lineChart"
+                    android:layout_width="match_parent"
+                    android:layout_height="260dp"
+                    android:layout_marginTop="12dp" />
+
+            </LinearLayout>
+        </ScrollView>
+
+        <!-- ==================== TAB 4: PROFILE & STATS ==================== -->
+        <ScrollView
+            android:id="@+id/layoutProfile"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:fillViewport="true"
+            android:visibility="gone">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:padding="20dp">
+
+                <!-- Profile Card Container -->
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:background="@drawable/card_income_bg"
+                    android:orientation="vertical"
+                    android:padding="20dp">
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal"
+                        android:gravity="center_vertical">
+
+                        <!-- Profile Initials / Photo Container in CardView -->
+                        <androidx.cardview.widget.CardView
+                            android:layout_width="56dp"
+                            android:layout_height="56dp"
+                            app:cardCornerRadius="28dp"
+                            app:cardElevation="0dp"
+                            app:cardPreventCornerOverlap="false"
+                            android:backgroundTint="@android:color/transparent">
+
+                            <FrameLayout
+                                android:layout_width="match_parent"
+                                android:layout_height="match_parent">
+
+                                <ImageView
+                                    android:id="@+id/ivProfilePic"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="match_parent"
+                                    android:visibility="gone"
+                                    android:scaleType="centerCrop"
+                                    android:contentDescription="Profile Picture" />
+
+                                <TextView
+                                    android:id="@+id/tvProfileInitials"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="match_parent"
+                                    android:background="@drawable/circle_icon_bg"
+                                    android:backgroundTint="@color/primary"
+                                    android:gravity="center"
+                                    android:text="?"
+                                    android:textColor="#FFFFFF"
+                                    android:textSize="20sp"
+                                    android:textStyle="bold" />
+                            </FrameLayout>
+                        </androidx.cardview.widget.CardView>
+
+                        <LinearLayout
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginStart="16dp"
+                            android:orientation="vertical">
+
+                            <TextView
+                                android:id="@+id/tvProfileName"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="Guest User"
+                                android:textColor="?attr/themeTextPrimary"
+                                android:textSize="18sp"
+                                android:textStyle="bold" />
+
+                            <TextView
+                                android:id="@+id/tvProfileEmail"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_marginTop="2dp"
+                                android:text="Sign in to backup data"
+                                android:textColor="?attr/themeTextSecondary"
+                                android:textSize="13sp" />
+                        </LinearLayout>
+                    </LinearLayout>
+
+                    <!-- Google Authentication Buttons -->
+                    <Button
+                        android:id="@+id/btnGoogleSignIn"
+                        android:layout_width="match_parent"
+                        android:layout_height="48dp"
+                        android:layout_marginTop="16dp"
+                        android:backgroundTint="#FFFFFF"
+                        app:strokeColor="#DDDDDD"
+                        app:strokeWidth="1dp"
+                        android:text="Sign In with Google"
+                        android:textColor="?attr/themeTextPrimary"
+                        android:textSize="14sp"
+                        android:textStyle="bold"
+                        app:cornerRadius="8dp"
+                        android:insetTop="0dp"
+                        android:insetBottom="0dp" />
+
+                    <Button
+                        android:id="@+id/btnGoogleSignOut"
+                        android:layout_width="match_parent"
+                        android:layout_height="48dp"
+                        android:layout_marginTop="16dp"
+                        android:backgroundTint="#FDF2F4"
+                        app:strokeColor="#FFCDD2"
+                        app:strokeWidth="1dp"
+                        android:text="Sign Out"
+                        android:textColor="@color/expense_red"
+                        android:textSize="14sp"
+                        android:textStyle="bold"
+                        app:cornerRadius="8dp"
+                        android:visibility="gone"
+                        android:insetTop="0dp"
+                        android:insetBottom="0dp" />
+
+                </LinearLayout>
+
+                <!-- Cloud Backup & Sync Header -->
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="24dp"
+                    android:text="Cloud Sync (Firebase)"
+                    android:textColor="?attr/themeTextPrimary"
+                    android:textSize="16sp"
+                    android:textStyle="bold" />
+
+                <!-- Cloud Sync Details Card -->
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="12dp"
+                    android:background="#FFFFFF"
+                    android:orientation="vertical"
+                    android:padding="16dp"
+                    android:elevation="1dp">
+
+                    <!-- Sync Status Row -->
+                    <RelativeLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:paddingVertical="4dp">
+
+                        <ImageView
+                            android:id="@+id/ivCloudStatus"
+                            android:layout_width="24dp"
+                            android:layout_height="24dp"
+                            android:layout_alignParentStart="true"
+                            android:layout_centerVertical="true"
+                            android:src="@drawable/ic_sync"
+                            app:tint="?attr/themeTextSecondary" />
+
+                        <LinearLayout
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_toEndOf="@id/ivCloudStatus"
+                            android:layout_marginStart="12dp"
+                            android:orientation="vertical">
+
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="Firebase Connection"
+                                android:textColor="?attr/themeTextPrimary"
+                                android:textStyle="bold"
+                                android:textSize="14sp" />
+
+                            <TextView
+                                android:id="@+id/tvCloudSyncStatus"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="Last backup: Never"
+                                android:textColor="?attr/themeTextSecondary"
+                                android:textSize="12sp" />
+                        </LinearLayout>
+                    </RelativeLayout>
+
+                    <View
+                        android:layout_width="match_parent"
+                        android:layout_height="1dp"
+                        android:layout_marginVertical="12dp"
+                        android:background="?attr/themeDivider" />
+
+                    <!-- Auto-Sync Switch Row -->
+                    <RelativeLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content">
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_alignParentStart="true"
+                            android:layout_centerVertical="true"
+                            android:text="Auto-Sync Changes"
+                            android:textColor="?attr/themeTextPrimary"
+                            android:textStyle="bold"
+                            android:textSize="14sp" />
+
+                        <com.google.android.material.switchmaterial.SwitchMaterial
+                            android:id="@+id/switchAutoSync"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_alignParentEnd="true"
+                            android:layout_centerVertical="true" />
+                    </RelativeLayout>
+
+                    <View
+                        android:layout_width="match_parent"
+                        android:layout_height="1dp"
+                        android:layout_marginVertical="12dp"
+                        android:background="?attr/themeDivider" />
+
+                    <!-- Sync Action Buttons -->
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal"
+                        android:baselineAligned="false">
+
+                        <!-- Backup Button -->
+                        <Button
+                            android:id="@+id/btnBackupCloud"
+                            android:layout_width="0dp"
+                            android:layout_height="44dp"
+                            android:layout_weight="1"
+                            android:layout_marginEnd="6dp"
+                            android:backgroundTint="@color/primary"
+                            android:text="Backup Now"
+                            android:textColor="#FFFFFF"
+                            android:textSize="12sp"
+                            android:textStyle="bold"
+                            app:cornerRadius="8dp"
+                            android:insetTop="0dp"
+                            android:insetBottom="0dp" />
+
+                        <!-- Restore Button -->
+                        <Button
+                            android:id="@+id/btnRestoreCloud"
+                            android:layout_width="0dp"
+                            android:layout_height="44dp"
+                            android:layout_weight="1"
+                            android:layout_marginStart="6dp"
+                            android:backgroundTint="#FFFFFF"
+                            app:strokeColor="@color/primary"
+                            app:strokeWidth="1dp"
+                            android:text="Restore Now"
+                            android:textColor="@color/primary"
+                            android:textSize="12sp"
+                            android:textStyle="bold"
+                            app:cornerRadius="8dp"
+                            android:insetTop="0dp"
+                            android:insetBottom="0dp" />
+                    </LinearLayout>
+                </LinearLayout>
+
+                <!-- Statistics Header -->
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="24dp"
+                    android:text="Database Stats"
+                    android:textColor="?attr/themeTextPrimary"
+                    android:textSize="16sp"
+                    android:textStyle="bold" />
+
+                <!-- Stats Details -->
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="12dp"
+                    android:background="#FFFFFF"
+                    android:orientation="vertical"
+                    android:padding="16dp"
+                    android:elevation="1dp">
+
+                    <!-- Net Savings Row -->
+                    <RelativeLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:paddingVertical="8dp">
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_alignParentStart="true"
+                            android:text="Net Savings"
+                            android:textColor="?attr/themeTextSecondary" />
+                        <TextView
+                            android:id="@+id/tvProfileSavings"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_alignParentEnd="true"
+                            android:text="₹0"
+                            android:textColor="@color/income_green"
+                            android:textStyle="bold" />
+                    </RelativeLayout>
+
+                    <View
+                        android:layout_width="match_parent"
+                        android:layout_height="1dp"
+                        android:background="?attr/themeDivider" />
+
+                    <!-- Total Transactions Row -->
+                    <RelativeLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:paddingVertical="8dp">
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_alignParentStart="true"
+                            android:text="Total Transactions"
+                            android:textColor="?attr/themeTextSecondary" />
+                        <TextView
+                            android:id="@+id/tvProfileTotalCount"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_alignParentEnd="true"
+                            android:text="0"
+                            android:textColor="?attr/themeTextPrimary"
+                            android:textStyle="bold" />
+                    </RelativeLayout>
+                </LinearLayout>
+
+                <!-- App Preferences Header -->
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="24dp"
+                    android:text="App Preferences"
+                    android:textColor="?attr/themeTextPrimary"
+                    android:textSize="16sp"
+                    android:textStyle="bold" />
+
+                <!-- Preferences Details Card -->
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="12dp"
+                    android:background="#FFFFFF"
+                    android:orientation="vertical"
+                    android:padding="16dp"
+                    android:elevation="1dp">
+
+                    <!-- Budget Limit Setting Row -->
+                    <RelativeLayout
+                        android:id="@+id/rlSetBudget"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:paddingVertical="8dp"
+                        android:clickable="true"
+                        android:focusable="true"
+                        android:background="?attr/selectableItemBackground">
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_alignParentStart="true"
+                            android:layout_centerVertical="true"
+                            android:text="Monthly Budget Limit"
+                            android:textColor="?attr/themeTextPrimary"
+                            android:textStyle="bold"
+                            android:textSize="14sp" />
+                        <TextView
+                            android:id="@+id/tvProfileBudgetLimit"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_alignParentEnd="true"
+                            android:layout_centerVertical="true"
+                            android:text="Not Set"
+                            android:textColor="@color/primary"
+                            android:textStyle="bold"
+                            android:textSize="14sp" />
+                    </RelativeLayout>
+
+                    <View
+                        android:layout_width="match_parent"
+                        android:layout_height="1dp"
+                        android:background="?attr/themeDivider" />
+
+                    <!-- Passcode Lock Switch Row -->
+                    <RelativeLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:paddingVertical="4dp">
+                        <LinearLayout
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_alignParentStart="true"
+                            android:layout_centerVertical="true"
+                            android:orientation="vertical">
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="Passcode PIN Lock"
+                                android:textColor="?attr/themeTextPrimary"
+                                android:textStyle="bold"
+                                android:textSize="14sp" />
+                            <TextView
+                                android:id="@+id/tvPasscodeStatus"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_marginTop="2dp"
+                                android:text="Protect your data on launch"
+                                android:textColor="?attr/themeTextSecondary"
+                                android:textSize="12sp" />
+                        </LinearLayout>
+                        <com.google.android.material.switchmaterial.SwitchMaterial
+                            android:id="@+id/switchPasscode"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_alignParentEnd="true"
+                            android:layout_centerVertical="true" />
+                    </RelativeLayout>
+
+                    <View
+                        android:layout_width="match_parent"
+                        android:layout_height="1dp"
+                        android:background="?attr/themeDivider" />
+
+                    <!-- Biometric Lock Switch Row -->
+                    <RelativeLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:paddingVertical="4dp">
+                        <LinearLayout
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_alignParentStart="true"
+                            android:layout_centerVertical="true"
+                            android:orientation="vertical">
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="Biometric Unlock"
+                                android:textColor="?attr/themeTextPrimary"
+                                android:textStyle="bold"
+                                android:textSize="14sp" />
+                            <TextView
+                                android:id="@+id/tvBiometricStatus"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_marginTop="2dp"
+                                android:text="Fingerprint or face recognition"
+                                android:textColor="?attr/themeTextSecondary"
+                                android:textSize="12sp" />
+                        </LinearLayout>
+                        <com.google.android.material.switchmaterial.SwitchMaterial
+                            android:id="@+id/switchBiometric"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_alignParentEnd="true"
+                            android:layout_centerVertical="true" />
+                    </RelativeLayout>
+
+                    <View
+                        android:layout_width="match_parent"
+                        android:layout_height="1dp"
+                        android:background="?attr/themeDivider" />
+
+                    <!-- Theme Selector Row -->
+                    <RelativeLayout
+                        android:id="@+id/rlThemeSelect"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:paddingVertical="12dp"
+                        android:clickable="true"
+                        android:focusable="true"
+                        android:background="?attr/selectableItemBackground">
+                        <LinearLayout
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_alignParentStart="true"
+                            android:layout_centerVertical="true"
+                            android:orientation="vertical">
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="App Theme"
+                                android:textColor="?attr/themeTextPrimary"
+                                android:textStyle="bold"
+                                android:textSize="14sp" />
+                            <TextView
+                                android:id="@+id/tvCurrentTheme"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_marginTop="2dp"
+                                android:text="Royal Violet"
+                                android:textColor="?attr/themeTextSecondary"
+                                android:textSize="12sp" />
+                        </LinearLayout>
+                        <ImageView
+                            android:layout_width="20dp"
+                            android:layout_height="20dp"
+                            android:layout_alignParentEnd="true"
+                            android:layout_centerVertical="true"
+                            android:src="@drawable/ic_sort"
+                            app:tint="?attr/themeTextSecondary" />
+                    </RelativeLayout>
+
+                    <View
+                        android:layout_width="match_parent"
+                        android:layout_height="1dp"
+                        android:background="?attr/themeDivider" />
+
+                    <!-- Recurring Transactions Manager Row -->
+                    <RelativeLayout
+                        android:id="@+id/rlManageRecurring"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:paddingVertical="12dp"
+                        android:clickable="true"
+                        android:focusable="true"
+                        android:background="?attr/selectableItemBackground">
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_alignParentStart="true"
+                            android:layout_centerVertical="true"
+                            android:text="Recurring Schedules"
+                            android:textColor="?attr/themeTextPrimary"
+                            android:textStyle="bold"
+                            android:textSize="14sp" />
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_alignParentEnd="true"
+                            android:layout_centerVertical="true"
+                            android:text="Manage ❯"
+                            android:textColor="?attr/themeTextSecondary"
+                            android:textSize="13sp" />
+                    </RelativeLayout>
+
+                </LinearLayout>
+
+
+
+            </LinearLayout>
+        </ScrollView>
+
+    </FrameLayout>
+
+    <!-- ====== FULL SCREEN LOGIN OVERLAY ====== -->
+    <!-- ====== FULL SCREEN LOGIN OVERLAY ====== -->
+    <LinearLayout
+        android:id="@+id/layoutLogin"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@drawable/bg_login_gradient"
+        android:orientation="vertical"
+        android:gravity="center"
+        android:padding="32dp"
+        android:clickable="true"
+        android:focusable="true"
+        android:elevation="24dp"
+        android:visibility="gone">
+
+        <!-- App Logo / Icon -->
+        <ImageView
+            android:layout_width="88dp"
+            android:layout_height="88dp"
+            android:src="@drawable/ic_generic_transaction"
+            android:background="@drawable/circle_icon_bg"
+            android:backgroundTint="#26FFFFFF"
+            android:padding="20dp"
+            app:tint="#FFFFFF" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="20dp"
+            android:text="HisabDo"
+            android:textColor="#FFFFFF"
+            android:textSize="32sp"
+            android:textStyle="bold"
+            android:letterSpacing="0.02" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="6dp"
+            android:text="Your Premium Expense Companion"
+            android:textColor="#B0B0D0"
+            android:textSize="14sp" />
+
+        <!-- Glassmorphic Card Container -->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="36dp"
+            android:background="@drawable/bg_login_card"
+            android:orientation="vertical"
+            android:padding="24dp"
+            android:gravity="center">
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:lineSpacingMultiplier="1.2"
+                android:text="Log in with Google to securely backup and sync your expenses across all your devices."
+                android:textColor="#E0E0FF"
+                android:textSize="14sp" />
+
+            <!-- Login Button -->
+            <Button
+                android:id="@+id/btnLoginOverlay"
+                android:layout_width="match_parent"
+                android:layout_height="50dp"
+                android:layout_marginTop="28dp"
+                android:backgroundTint="#FFFFFF"
+                android:text="Sign In with Google"
+                android:textColor="#3F2B96"
+                android:textSize="15sp"
+                android:textStyle="bold"
+                app:cornerRadius="10dp" />
+
+            <!-- Skip / Guest Button -->
+            <Button
+                android:id="@+id/btnSkipLogin"
+                style="@style/Widget.Material3.Button.OutlinedButton"
+                android:layout_width="match_parent"
+                android:layout_height="50dp"
+                android:layout_marginTop="14dp"
+                app:strokeColor="#FFFFFF"
+                app:strokeWidth="1dp"
+                android:text="Continue as Guest"
+                android:textColor="#FFFFFF"
+                android:textSize="14sp"
+                android:textStyle="bold"
+                app:cornerRadius="10dp" />
+
+        </LinearLayout>
+
+    </LinearLayout>
+
+    <!-- ====== FULL SCREEN PASSCODE LOCK OVERLAY ====== -->
+    <LinearLayout
+        android:id="@+id/layoutLock"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@drawable/bg_login_gradient"
+        android:orientation="vertical"
+        android:gravity="center"
+        android:padding="32dp"
+        android:clickable="true"
+        android:focusable="true"
+        android:elevation="30dp"
+        android:visibility="gone">
+
+        <!-- Lock Icon -->
+        <ImageView
+            android:layout_width="64dp"
+            android:layout_height="64dp"
+            android:src="@drawable/ic_generic_transaction"
+            android:background="@drawable/circle_icon_bg"
+            android:backgroundTint="#26FFFFFF"
+            android:padding="16dp"
+            app:tint="#FFFFFF" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
+            android:text="HisabDo Locked"
+            android:textColor="#FFFFFF"
+            android:textSize="24sp"
+            android:textStyle="bold" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="4dp"
+            android:text="Enter your 4-digit PIN to unlock"
+            android:textColor="#B0B0D0"
+            android:textSize="14sp" />
+
+        <!-- PIN Input Display -->
+        <TextView
+            android:id="@+id/tvPinDisplay"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="28dp"
+            android:text="• • • •"
+            android:textColor="#FFFFFF"
+            android:textSize="36sp"
+            android:textStyle="bold"
+            android:letterSpacing="0.4" />
+
+        <!-- Numeric Keypad Grid -->
+        <GridLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="32dp"
+            android:columnCount="3"
+            android:rowCount="4">
+
+            <!-- Buttons 1 to 9 -->
+            <Button style="@style/Widget.Material3.Button.TextButton" android:id="@+id/btnKey1" android:layout_width="72dp" android:layout_height="72dp" android:text="1" android:textColor="#FFFFFF" android:textSize="22sp" />
+            <Button style="@style/Widget.Material3.Button.TextButton" android:id="@+id/btnKey2" android:layout_width="72dp" android:layout_height="72dp" android:text="2" android:textColor="#FFFFFF" android:textSize="22sp" />
+            <Button style="@style/Widget.Material3.Button.TextButton" android:id="@+id/btnKey3" android:layout_width="72dp" android:layout_height="72dp" android:text="3" android:textColor="#FFFFFF" android:textSize="22sp" />
+
+            <Button style="@style/Widget.Material3.Button.TextButton" android:id="@+id/btnKey4" android:layout_width="72dp" android:layout_height="72dp" android:text="4" android:textColor="#FFFFFF" android:textSize="22sp" />
+            <Button style="@style/Widget.Material3.Button.TextButton" android:id="@+id/btnKey5" android:layout_width="72dp" android:layout_height="72dp" android:text="5" android:textColor="#FFFFFF" android:textSize="22sp" />
+            <Button style="@style/Widget.Material3.Button.TextButton" android:id="@+id/btnKey6" android:layout_width="72dp" android:layout_height="72dp" android:text="6" android:textColor="#FFFFFF" android:textSize="22sp" />
+
+            <Button style="@style/Widget.Material3.Button.TextButton" android:id="@+id/btnKey7" android:layout_width="72dp" android:layout_height="72dp" android:text="7" android:textColor="#FFFFFF" android:textSize="22sp" />
+            <Button style="@style/Widget.Material3.Button.TextButton" android:id="@+id/btnKey8" android:layout_width="72dp" android:layout_height="72dp" android:text="8" android:textColor="#FFFFFF" android:textSize="22sp" />
+            <Button style="@style/Widget.Material3.Button.TextButton" android:id="@+id/btnKey9" android:layout_width="72dp" android:layout_height="72dp" android:text="9" android:textColor="#FFFFFF" android:textSize="22sp" />
+
+            <!-- Clear, 0, Backspace -->
+            <Button style="@style/Widget.Material3.Button.TextButton" android:id="@+id/btnKeyClear" android:layout_width="72dp" android:layout_height="72dp" android:text="C" android:textColor="#FF6B6B" android:textSize="18sp" />
+            <Button style="@style/Widget.Material3.Button.TextButton" android:id="@+id/btnKey0" android:layout_width="72dp" android:layout_height="72dp" android:text="0" android:textColor="#FFFFFF" android:textSize="22sp" />
+            <Button style="@style/Widget.Material3.Button.TextButton" android:id="@+id/btnKeyDel" android:layout_width="72dp" android:layout_height="72dp" android:text="⌫" android:textColor="#FFFFFF" android:textSize="20sp" />
+        </GridLayout>
+
+        <ImageButton
+            android:id="@+id/ibBiometricKey"
+            android:layout_width="64dp"
+            android:layout_height="64dp"
+            android:layout_marginTop="24dp"
+            android:background="?attr/selectableItemBackgroundBorderless"
+            android:src="@drawable/ic_fingerprint"
+            app:tint="#FFFFFF"
+            android:padding="12dp"
+            android:scaleType="fitCenter"
+            android:visibility="gone"
+            android:contentDescription="Biometric Unlock" />
+
+    </LinearLayout>
+
+</RelativeLayout>

@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <attr name="themeGradientStart" format="color" />
+    <attr name="themeGradientMid" format="color" />
+    <attr name="themeGradientEnd" format="color" />
+    <attr name="themeCardBg" format="color" />
+    <attr name="themeWindowBg" format="color" />
+    <attr name="themeTextPrimary" format="color" />
+    <attr name="themeTextSecondary" format="color" />
+    <attr name="themeDivider" format="color" />
+    <attr name="themeBalanceCardBg" format="color" />
+    <attr name="themeBalanceCardStroke" format="color" />
+</resources>
